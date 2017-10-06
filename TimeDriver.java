@@ -12,6 +12,6 @@ public class TimeDriver {
         customTime.setTime(43200000); //Sets the custom time to 43200000 ms or 12 hr, for demonstration purposes.
 
         System.out.println("\nYour updated custom time in UTC is " + customTime.show24Time());
-        System.out.println("Your custom time in UTC 12hr time is " + customTime.show12Time());
+        System.out.println("Your updated custom time in UTC 12hr time is " + customTime.show12Time());
     }
 }

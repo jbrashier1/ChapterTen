@@ -4,22 +4,26 @@
  * Professor: Kanchanawanchai
  */
 public class Time {
+    private final int MILLISINSEC = 1000;
+    private final long MILLISINDAY = 86400000;
+    private final int SECSINMINUTE = 60;
+    private final int MINSINHOUR = 60;
     private long hour;
     private long minute;
     private long second;
 
     /** Reads milliseconds since the epoch, sets hours, minutes, and seconds to UCT 24hr time equivalent. */
     public Time() {
-        this.hour = ((System.currentTimeMillis() % 86400000) / 1000 / 60 / 60);
-        this.minute = (((System.currentTimeMillis() % 86400000) % 3600000) / 60000);
-        this.second = ((((System.currentTimeMillis() % 86400000) / 1000) % 60) % 60);
+        this.hour = ((System.currentTimeMillis() % MILLISINDAY) / MILLISINSEC / SECSINMINUTE / MINSINHOUR);
+        this.minute = (((System.currentTimeMillis() % MILLISINDAY) % (MILLISINSEC * SECSINMINUTE * MINSINHOUR)) / (MILLISINSEC * SECSINMINUTE));
+        this.second = ((((System.currentTimeMillis() % MILLISINDAY) / MILLISINSEC) % MINSINHOUR) % SECSINMINUTE);
     }
 
     /** Takes the millisecond constructor and sets hours, minutes, and seconds to UCT 24hr time equivalent. */
     public Time(long msPassed) {
-        this.hour = ((msPassed % 86400000) / 1000 / 60 / 60);
-        this.minute = (((msPassed % 86400000) % 3600000) / 60000);
-        this.second = ((((msPassed % 86400000) / 1000) % 60) % 60);
+        this.hour = ((msPassed % MILLISINDAY) / MILLISINSEC / SECSINMINUTE / MINSINHOUR);
+        this.minute = (((msPassed % MILLISINDAY) % (MILLISINSEC * SECSINMINUTE * MINSINHOUR)) / (MILLISINSEC * SECSINMINUTE));
+        this.second = ((((msPassed % MILLISINDAY) / MILLISINSEC) % MINSINHOUR) % SECSINMINUTE);
     }
 
     /** Takes the hour, minute, and second constructor and sets their respective data fields to them. */
